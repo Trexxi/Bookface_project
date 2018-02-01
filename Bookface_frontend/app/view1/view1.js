@@ -15,9 +15,7 @@ angular.module('myApp.view1', ['ngRoute'])
         url: "http://localhost:3000/users"
     }).success(function(data) {
     console.log(data);
-    console.log("LOOOL");
   }).error(function(error){
     console.log(error);
-    console.log("vafan?");
   });
 }]);
