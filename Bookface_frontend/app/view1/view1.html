@@ -1,1 +1,4 @@
-<p>This is the partial for view 1.</p>
+<div ng-repeat="user in users">
+    <p>{{user.name | uppercase}}</p>
+    <p>{{user.date | date}}</p>
+</div>

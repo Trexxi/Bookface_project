@@ -22,6 +22,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+/**
+ * CORS, has to be added before routes
+ */
 app.use(function(req, res, next) {
     res.append('Access-Control-Allow-Origin', ['*']) ;
     next();
