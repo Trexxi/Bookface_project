@@ -9,6 +9,15 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', [function() {
-
+.controller('View1Ctrl', ['$scope', '$http',function($scope, $http) {
+    $http({
+        method: 'GET',
+        url: "http://localhost:3000/users"
+    }).success(function(data) {
+    console.log(data);
+    console.log("LOOOL");
+  }).error(function(error){
+    console.log(error);
+    console.log("vafan?");
+  });
 }]);
