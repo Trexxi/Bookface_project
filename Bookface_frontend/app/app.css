@@ -4,6 +4,10 @@ body {
   background-color:#464c57;
 }
 
+p {
+  color:white;
+}
+
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
@@ -21,7 +25,7 @@ body {
 
 .menu > li {
   display: inline;
-  color:white;
+
 }
 
 .menu > li + li:before {

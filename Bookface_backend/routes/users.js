@@ -6,13 +6,17 @@ var moment = require('moment');
 router.get('/', function(req, res, next) {
     var users = [
         {
-            name:'Beck Linusman',
-            date:moment()
+            firstName:'beck',
+            lastName: 'linusman',
+            date:moment(),
+            isTired: true
 
         },
         {
-            name:'Trexxitrice teddysson',
-            date:moment()
+            fistName: 'trexxytrice',
+            lastName: 'teddysson',
+            date:moment(),
+            isTired: true
 
         }
     ];

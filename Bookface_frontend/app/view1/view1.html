@@ -1,4 +1,6 @@
 <div ng-repeat="user in users">
-    <p>{{user.name | uppercase}}</p>
-    <p>{{user.date | date}}</p>
+    <div ng-if="user.isTired">
+        <p>{{user.firstName | capitalize}} {{user.lastName | capitalize}}</p>
+        <p>{{user.date | date}}</p>
+    </div>
 </div>
