@@ -5,8 +5,16 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var mongo = require('mongodb');
+var mongoose = require('mongoose');
+
+var db = mongoose.connect('mongodb://localhost:27017/bookface', {
+    /* other options */
+});
+
 var index = require('./routes/index');
 var users = require('./routes/users');
+
 
 var app = express();
 
@@ -26,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
  * CORS, has to be added before routes
  */
 app.use(function(req, res, next) {
-    res.append('Access-Control-Allow-Origin', ['*']) ;
+    res.append('Access-Control-Allow-Origin', ['*']);
     next();
 });
 

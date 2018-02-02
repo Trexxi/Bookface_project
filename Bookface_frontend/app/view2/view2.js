@@ -9,6 +9,15 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 }])
 
-.controller('View2Ctrl', [function() {
-
+.controller('View2Ctrl', ['$scope', '$http',function($scope, $http) {
+  console.log("JHEWHJIEQFEQFQE");
+  var data = {
+    hehe:"jhefqewfjiewofioewjfewoifwjefoewifewoifj"
+  };
+    $http({
+        method: 'POST',
+        url: 'http://localhost:3000/users/mj',
+        data: data,
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    });
 }]);
