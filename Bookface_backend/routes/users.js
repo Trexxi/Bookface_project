@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 
         },
         {
-            fistName: 'trexxytrice',
+            firstName: 'trexxytrice',
             lastName: 'teddysson',
             date:moment(),
             isTired: true
