@@ -26,7 +26,9 @@ router.get('/', function(req, res, next) {
 
 router.post('/mj', function(req, res, next) {
     console.log(req.body, "FEIJOFQEWJOIFQEJOIFQEOIFJQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEJ");
-    Card.hehe(req.body);
+    req.body.date = new moment();
+    console.log(req.body.date);
+    Card.createNewCard(req.body);
     res.send("good job br");
     res.end();
 });

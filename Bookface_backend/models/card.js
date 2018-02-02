@@ -11,19 +11,17 @@ var CardSchema = mongoose.Schema({
         type: String
     },
     date: {
-        type: 'Moment'
+        type: 'Moment',
+        default:'Moment'
+    },
+    isTired: {
+        type: Boolean,
+        default:false
     }
 });
 
 var Card = module.exports = mongoose.model('Card', CardSchema);
 
-module.exports.hehe = function(log) {
-    console.log(log);
-    console.log(log);
-    console.log(log);
-
-
-    console.log(log);
-    console.log(log);
-    console.log(log);
+module.exports.createNewCard = function(newCard) {
+    newCard.save();
 };
