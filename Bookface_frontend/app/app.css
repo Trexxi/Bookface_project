@@ -1,5 +1,9 @@
 /* app css stylesheet */
 
+body {
+  background-color:#464c57;
+}
+
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
@@ -17,6 +21,7 @@
 
 .menu > li {
   display: inline;
+  color:white;
 }
 
 .menu > li + li:before {
