@@ -19,4 +19,11 @@ var Card = module.exports = mongoose.model('Card', CardSchema);
 
 module.exports.hehe = function(log) {
     console.log(log);
+    console.log(log);
+    console.log(log);
+
+
+    console.log(log);
+    console.log(log);
+    console.log(log);
 };
