@@ -1,18 +1,46 @@
 /* app css stylesheet */
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One | Ubuntu');
+
 
 body {
   background-color:#464c57;
 }
 
 p {
-  color:white;
+  color:black;
+}
+
+.cardObject {
+  background-color: white;
+  border-radius: 30px;
+  min-height: 70px;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-align: center;
+  margin:auto;
 }
 
 .menu {
+  display:flex;
+  justify-content: center;
   list-style: none;
   border-bottom: 0.1em solid black;
   margin-bottom: 2em;
   padding: 0 0 0.5em;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+h1 {
+  color:white;
+  font-family: 'Fredoka One', cursive;
+  font-size: 72px;
+
 }
 
 .menu:before {
