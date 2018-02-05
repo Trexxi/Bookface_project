@@ -4,22 +4,7 @@ var moment = require('moment');
 var Card = require('../models/card');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    var users = [
-        {
-            firstName:'beck',
-            lastName: 'linusman',
-            date:moment(),
-            isTired: true
-
-        },
-        {
-            firstName: 'trexxytrice',
-            lastName: 'teddysson',
-            date:moment(),
-            isTired: true
-        }
-    ];
-    res.json(users);
+    Card.findAllCards(req, res);
 });
 
 router.post('/newCard', function(req, res, next) {

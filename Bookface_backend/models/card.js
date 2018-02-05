@@ -3,16 +3,12 @@ require('mongoose-moment')(mongoose);
 
 // User Schema
 var CardSchema = mongoose.Schema({
-    firstName: {
+    message: {
         type: String,
-        index:true
+        required: true
     },
-    lastName: {
-        type: String
-    },
-    isTired: {
-        type: Boolean,
-        default:true
+    date: {
+        type: 'Moment'
     }
 });
 
@@ -20,4 +16,16 @@ var Card = module.exports = mongoose.model('Card', CardSchema);
 
 module.exports.createNewCard = function(newCard) {
     newCard.save();
+};
+
+module.exports.findAllCards =  function(req, res) {
+    Card.find({},function(err, cards){
+        var cardMap = {};
+
+        cards.forEach(function(card){
+            cardMap[card._id] = card;
+        });
+
+        res.send(cardMap);
+    });
 };
