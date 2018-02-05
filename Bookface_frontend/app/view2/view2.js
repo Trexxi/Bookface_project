@@ -11,9 +11,7 @@ angular.module('myApp.view2', ['ngRoute'])
 
 .controller('View2Ctrl', ['$scope', '$http',function($scope, $http) {
   var data = {
-    firstName: "LINUS",
-      lastName:"beckman",
-      isTired: true
+      message: $scope.myText
   };
 
     $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
