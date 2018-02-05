@@ -10,7 +10,7 @@ var CardSchema = mongoose.Schema({
     },
     date: {
         type: 'Moment',
-        default: new moment()
+        default: moment()
     }
 });
 
@@ -30,4 +30,8 @@ module.exports.findAllCards =  function(req, res) {
 
         res.send(cardMap);
     });
+};
+
+module.exports.deletePost = function(id, callback) {
+  Card.remove({_id: id}, callback);
 };
