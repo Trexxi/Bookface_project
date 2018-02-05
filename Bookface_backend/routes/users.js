@@ -22,20 +22,12 @@ router.get('/', function(req, res, next) {
     res.json(users);
 });
 
-router.post('/mj', function(req, res, next) {
-    console.log(req.body, "FEIJOFQEWJOIFQEJOIFQEOIFJQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEQEJ");
+router.post('/newCard', function(req, res, next) {
+    var cardData = req.body;
     console.log(req.body);
-    var newCard = new Card({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        isTired: req.body.isTired
-    });
-    console.log(req.body);
-
-    newCard.firstName = req.body.firstName;
-    newCard.lastName = req.body.lastName;
-    newCard.isTired = req.body.isTired;
+    var newCard = new Card(cardData);
     Card.createNewCard(newCard);
+    res.send('s1ck');
     res.end();
 });
 
