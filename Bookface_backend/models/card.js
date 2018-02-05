@@ -9,8 +9,7 @@ var CardSchema = mongoose.Schema({
         required: true
     },
     date: {
-        type: 'Moment',
-        default: moment()
+        type: 'Moment'
     }
 });
 
@@ -33,5 +32,5 @@ module.exports.findAllCards =  function(req, res) {
 };
 
 module.exports.deletePost = function(id, callback) {
-  Card.remove({_id: id}, callback);
+  Card.findByIdAndRemove({_id: id}, callback);
 };
