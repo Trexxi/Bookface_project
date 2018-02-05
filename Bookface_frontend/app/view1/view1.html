@@ -11,5 +11,5 @@
 
 <div class="cardObject" ng-repeat="user in users">
     <p>{{user.message}}</p>
-    <p>{{user.date | date}}</p>
+    <p>{{user.date | date: "EEEE, MMMM d h:m:ss, y"}}</p>
 </div>

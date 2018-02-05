@@ -10,6 +10,7 @@ angular.module('myApp.view1', ['ngRoute'])
 }])
 
 .controller('View1Ctrl', ['$scope', '$http',function($scope, $http) {
+    // Get Cards info
    $scope.getCards = function() {
        $http({
         method: 'GET',
@@ -20,9 +21,11 @@ angular.module('myApp.view1', ['ngRoute'])
     console.log(error);
   });
 };
+   // Post data to database
     $scope.postData = function() {
         var data = {
-            message: $scope.myText
+            message: $scope.myText,
+            date: $scope.date = new Date()
         };
 
         $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -63,16 +66,17 @@ angular.module('myApp.view1', ['ngRoute'])
             });
     };
 
+    $scope.getCards();
 
 
-
+//  Make textarea bigger when on focus
     $scope.areaOfEffect = function(){
         var textElement = angular.element(document.querySelector('#messageArea'));
         //console.log(textElement);
         textElement.attr('rows', '5');
         //console.log(textElement);
     };
-
+//  Make texarea smaller if the textarea value is 0
     $scope.notAreaOfEffect = function() {
         var textInBox = $scope.myText;
         var textElement = angular.element(document.querySelector('#messageArea'));
@@ -82,7 +86,7 @@ angular.module('myApp.view1', ['ngRoute'])
             textElement.attr('rows', '1');
         }
     };
-
+// Submit to the database
     $scope.pushingForward = function() {
         var textInBox = $scope.myText;
         if(textInBox === undefined){
@@ -90,12 +94,14 @@ angular.module('myApp.view1', ['ngRoute'])
         }
         if(textInBox.length !== 0){
             //HERE POST THINGY!
-            //$scope.myText ='';
             $scope.postData();
-           // $scope.notAreaOfEffect();
+            $scope.myText ='';
+           $scope.notAreaOfEffect();
 
         } else {
             alert("Can't send empty message");
+           var fuckingDate = $scope.date = new Date();
+            console.log(fuckingDate);
         }
         $scope.getCards();
     };
