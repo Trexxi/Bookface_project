@@ -1,11 +1,11 @@
 <div class="cardInput">
-    <form>
-        Header: <br />
-        <input type="text"><br>
-        <textarea name="message" rows="10" cols="30">
-
+    <form novalidate>
+        <textarea id="messageArea" name="message" rows="1" cols="50" ng-focus="areaOfEffect()"
+                  ng-blur="notAreaOfEffect()" ng-model="myText" placeholder="What's on your mind?">
         </textarea>
+        <input type="submit" value="Publish" id="submitButton" ng-click="pushingForward()">
     </form>
+
 </div>
 
 

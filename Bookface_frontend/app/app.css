@@ -14,7 +14,7 @@ p {
 .cardInput {
   background-color: white;
   border-radius: 20px;
-  min-height: 230px;
+  min-height: 70px;
   width: 600px;
   display: flex;
   flex-direction: column;
@@ -78,4 +78,16 @@ h1 {
 .menu > li + li:before {
   content: "|";
   padding-right: 0.3em;
+}
+
+#messageArea {
+  margin-top: 10px;
+  border:none;
+  border-bottom: #464c57 solid 2px;
+}
+
+#submitButton {
+  background-color: cadetblue;
+  color: white;
+  border: none;
 }
