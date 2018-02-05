@@ -10,8 +10,6 @@
 
 
 <div class="cardObject" ng-repeat="user in users">
-    <div ng-if="user.isTired">
-        <p>{{user.firstName | capitalize}} {{user.lastName | capitalize}}</p>
-        <p>{{user.date | date}}</p>
-    </div>
+    <p>{{user.message}}</p>
+    <p>{{user.date | date}}</p>
 </div>

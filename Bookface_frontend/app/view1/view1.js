@@ -10,21 +10,19 @@ angular.module('myApp.view1', ['ngRoute'])
 }])
 
 .controller('View1Ctrl', ['$scope', '$http',function($scope, $http) {
-    $http({
+   $scope.getCards = function() {
+       $http({
         method: 'GET',
         url: "http://localhost:3000/users"
     }).success(function(data) {
-    console.log(data);
-    $scope.users = data;
-  }).error(function(error){
+        $scope.users = data;
+    }).error(function(error){
     console.log(error);
   });
-
+};
     $scope.postData = function() {
         var data = {
-            firstName: "OLLLLOF",
-            lastName: "Nah",
-            isTired: true
+            message: $scope.myText
         };
 
         $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -56,18 +54,14 @@ angular.module('myApp.view1', ['ngRoute'])
         }
 
 
-        $http.post('http://localhost:3000/users/newCard', serializeData({
-            firstName: "snekenskvbokeof",
-            lastName: "ewfwepkfewkofokewkfoewpo",
-            isTired: false
-        }), {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
+        $http.post('http://localhost:3000/users/newCard', serializeData(data), {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
             .success(function (data, status, headers, config) {
                 console.log("bra jobbat");
             })
             .error(function (data, status, header, config) {
                 alert("XD");
             });
-    }
+    };
 
 
 
@@ -96,11 +90,13 @@ angular.module('myApp.view1', ['ngRoute'])
         }
         if(textInBox.length !== 0){
             //HERE POST THINGY!
-            $scope.myText ='';
+            //$scope.myText ='';
             $scope.postData();
-            $scope.notAreaOfEffect();
+           // $scope.notAreaOfEffect();
+
         } else {
             alert("Can't send empty message");
         }
+        $scope.getCards();
     };
 }]);

@@ -1,5 +1,6 @@
 var mongoose = require('mongoose')
 require('mongoose-moment')(mongoose);
+var moment = require('moment');
 
 // User Schema
 var CardSchema = mongoose.Schema({
@@ -8,7 +9,8 @@ var CardSchema = mongoose.Schema({
         required: true
     },
     date: {
-        type: 'Moment'
+        type: 'Moment',
+        default: new moment()
     }
 });
 
