@@ -28,12 +28,26 @@ angular.module('myApp.view1', ['ngRoute'])
     };
 
     $scope.notAreaOfEffect = function() {
-        var textLength = $scope.myText;
+        var textInBox = $scope.myText;
         var textElement = angular.element(document.querySelector('#messageArea'));
-        if (textLength === undefined){
-            textLength = "";
-        } if (textLength.length === 0) {
+        if (textInBox === undefined){
+            textInBox = "";
+        } if (textInBox.length === 0) {
             textElement.attr('rows', '1');
+        }
+    };
+
+    $scope.pushingForward = function() {
+        var textInBox = $scope.myText;
+        if(textInBox === undefined){
+            textInBox = "";
+        }
+        if(textInBox.length !== 0){
+            //HERE POST THINGY!
+            $scope.myText ='';
+            $scope.notAreaOfEffect();
+        } else {
+            alert("Can't send empty message");
         }
     };
 }]);

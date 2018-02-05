@@ -85,3 +85,9 @@ h1 {
   border:none;
   border-bottom: #464c57 solid 2px;
 }
+
+#submitButton {
+  background-color: cadetblue;
+  color: white;
+  border: none;
+}
