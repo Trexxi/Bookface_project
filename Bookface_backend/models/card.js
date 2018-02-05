@@ -10,13 +10,9 @@ var CardSchema = mongoose.Schema({
     lastName: {
         type: String
     },
-    date: {
-        type: 'Moment',
-        default:'Moment'
-    },
     isTired: {
         type: Boolean,
-        default:false
+        default:true
     }
 });
 
