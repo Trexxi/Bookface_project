@@ -66,6 +66,50 @@ angular.module('myApp.view1', ['ngRoute'])
             });
     };
 
+    $scope.removeData = function(id) {
+        var data = {
+            _id: id
+        };
+
+        $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
+        function serializeData(data) {
+            // If this is not an object, defer to native stringification.
+            if (!angular.isObject(data)) {
+                return ((data == null) ? "" : data.toString());
+            }
+
+            var buffer = [];
+
+            // Serialize each key in the object.
+            for (var name in data) {
+                if (!data.hasOwnProperty(name)) {
+                    continue;
+                }
+
+                var value = data[name];
+
+                buffer.push(
+                    encodeURIComponent(name) + "=" + encodeURIComponent((value == null) ? "" : value)
+                );
+            }
+
+            // Serialize the buffer and clean it up for transportation.
+            var source = buffer.join("&").replace(/%20/g, "+");
+            return (source);
+        }
+
+
+        $http.post('http://localhost:3000/users/deleteCard', serializeData(data), {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
+            .success(function (data, status, headers, config) {
+                console.log("BORTA");
+            })
+            .error(function (data, status, header, config) {
+                alert("XD...");
+            });
+
+    };
+
     $scope.getCards();
     $scope.isActive = false;
     $scope.activeButton = function() {
@@ -109,15 +153,22 @@ angular.module('myApp.view1', ['ngRoute'])
         }
         $scope.getCards();
     };
+
+
 // Delete card
     $scope.removeCard = function(id){
+        console.log(id);
         var answer = confirm("Are you sure?");
         if(answer){
+            $scope.removeData(id);
             alert("DELETEEED");
+            $scope.getCards();
         } else {
             alert("Well.. don't fucking click it then!");
         }
+    };
 
-
-    }
+    $scope.testRemoveData = function(rId) {
+        console.log("is it working?" + rId);
+    };
 }]);
