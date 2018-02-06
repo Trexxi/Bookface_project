@@ -4,6 +4,48 @@ var moment = require('moment');
 var Card = require('../models/card');
 var User = require('../models/user');
 var checkAuth = require('../middleware/check-auth.js');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
+/**
+ * Start of passport code
+ * =====================================================================================================================
+ */
+passport.use(new LocalStrategy(
+    function (username, password, done) {
+        User.getUserByUsername(username, function (err, user) {
+            if (err) throw err;
+            if (!user) {
+                return done(null, false, {message: 'Unknown User'});
+            }
+
+            User.comparePassword(password, user.password, function (err, isMatch) {
+                if (err) throw err;
+                if (isMatch) {
+                    return done(null, user);
+                } else {
+                    return done(null, false, {message: 'Invalid password'});
+                }
+            });
+        });
+    }));
+
+passport.serializeUser(function (user, done) {
+    done(null, user.id);
+});
+
+passport.deserializeUser(function (id, done) {
+    User.getUserById(id, function (err, user) {
+        done(err, user);
+    });
+});
+/**
+ * End of passport code
+ * =====================================================================================================================
+ */
+
+
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
     Card.findAllCards(req, res);
@@ -36,8 +78,27 @@ router.post('/updateCard', function(req, res, next) {
 
 router.post('/login', function(req, res, next) {
     console.log(req.body);
+    /*
+    *User.logUserIn(req,res);
+    */
     User.createUser(req, res);
     res.end();
+});
+
+router.post('/createUser', function(req, res, next) {
+    var newUser = new User({
+        name: req.body.name,
+        email: req.body.email,
+        username: req.body.username,
+        password: req.body.password
+    });
+    User.createUser(newUser,function(err, user) {
+        if(err) throw err;
+        console.log("following user has been created: ", user);
+        res.status(200).json({
+            user:user
+        });
+    });
 });
 
 router.post('/testarSaker', checkAuth, function(req, res, next) {
