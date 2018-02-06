@@ -172,3 +172,4 @@ angular.module('myApp.view1', ['ngRoute'])
         console.log("is it working?" + rId);
     };
 }]);
+
