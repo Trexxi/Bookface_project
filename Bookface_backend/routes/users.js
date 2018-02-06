@@ -3,6 +3,7 @@ var router = express.Router();
 var moment = require('moment');
 var Card = require('../models/card');
 var User = require('../models/user');
+var checkAuth = require('../middleware/check-auth.js');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
     Card.findAllCards(req, res);
@@ -34,8 +35,15 @@ router.post('/updateCard', function(req, res, next) {
 });
 
 router.post('/login', function(req, res, next) {
+    console.log(req.body);
     User.createUser(req, res);
     res.end();
+});
+
+router.post('/testarSaker', checkAuth, function(req, res, next) {
+    res.status(200).send('ja bror');
+    res.end();
+
 });
 
 module.exports = router;
