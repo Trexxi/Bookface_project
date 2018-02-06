@@ -35,3 +35,11 @@ module.exports.deletePost = function(id, callback) {
     var query = {_id: id.toString()};
     Card.findOneAndRemove(query, function(err){console.log(err)});
 };
+
+module.exports.updateCard = function(id,message,date) {
+    var query = {_id: id.toString()};
+    console.log(message,date);
+    Card.findOneAndUpdate(query, {message:message, date:date}, {}, function(err) {
+        console.log("ERRRR",err);
+    });
+};
