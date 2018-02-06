@@ -13,6 +13,5 @@
 <div class="cardObject" ng-repeat="user in users">
     <p id="messageBra">{{user.message}}</p>
     <p>{{user.date | date: "EEEE, MMMM d h:m:ss, y"}}</p>
-    <p> {{user._id}}</p>
     <button ng-click="removeCard(user._id)" id="deleteButton">Delete card</button>
 </div>
