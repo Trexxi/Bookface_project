@@ -22,4 +22,10 @@ router.post('/deleteCard', function(req, res, next) {
     res.end();
 });
 
+router.post('/updateCard', function(req, res, next) {
+    Card.updateCard(req.body._id, req.body.data);
+    res.send('updated');
+    res.end();
+});
+
 module.exports = router;
