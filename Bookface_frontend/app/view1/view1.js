@@ -150,17 +150,13 @@ angular.module('myApp.view1', ['ngRoute', 'oitozero.ngSweetAlert'])
            $scope.notAreaOfEffect();
 
         } else {
-            alert("Can't send empty message");
+            SweetAlert.swal("Nope.", "You can't send empty messages..", "error");
         }
         $scope.getCards();
     };
 
     $scope.testRemoveData = function(rId) {
         console.log("is it working?" + rId);
-    };
-
-    $scope.alertDelete = function() {
-
     };
 
     $scope.confirmDelete = function(id) {
