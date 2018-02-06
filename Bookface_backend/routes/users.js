@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var moment = require('moment');
 var Card = require('../models/card');
+var User = require('../models/user');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
     Card.findAllCards(req, res);
@@ -29,6 +30,11 @@ router.post('/updateCard', function(req, res, next) {
     console.log(req.body,"req");
     Card.updateCard(req.body._id, req.body.message, req.body.date);
     res.send('updated');
+    res.end();
+});
+
+router.post('/login', function(req, res, next) {
+    User.createUser(req, res);
     res.end();
 });
 
