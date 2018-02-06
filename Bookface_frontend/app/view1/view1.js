@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute'])
+angular.module('myApp.view1', ['ngRoute', 'oitozero.ngSweetAlert'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view1', {
@@ -9,7 +9,8 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', ['$scope', '$http',function($scope, $http) {
+.controller('View1Ctrl', ['$scope', '$http', 'SweetAlert', function($scope, $http, SweetAlert) {
+    var vm = this;
     // Get Cards info
    $scope.getCards = function() {
        $http({
@@ -154,22 +155,38 @@ angular.module('myApp.view1', ['ngRoute'])
         $scope.getCards();
     };
 
-
-// Delete card
-    $scope.removeCard = function(id){
-        console.log(id);
-        var answer = confirm("Are you sure?");
-        if(answer){
-            $scope.removeData(id);
-            alert("DELETEEED");
-            $scope.getCards();
-        } else {
-            alert("Well.. don't fucking click it then!");
-        }
-    };
-
     $scope.testRemoveData = function(rId) {
         console.log("is it working?" + rId);
     };
+
+    $scope.alertDelete = function() {
+
+    };
+
+    $scope.confirmDelete = function(id) {
+        console.log(id);
+        SweetAlert.swal({
+            title:"Are you sure?",
+            text:"This card will be removed permamently.",
+            type:"warning",
+            showCancelButton:true,
+            confirmButtonColor: "#d80f0f",
+            confirmButtonText:"Delete!",
+            cancelButtonText:"Cancel",
+            closeOnConfirm:false,
+            closeOnCancel:false
+        },
+            function (isConfirm) {
+                if (isConfirm) {
+                    $scope.removeData(id);
+                    SweetAlert.swal("Deleted!", "", "success");
+                    $scope.getCards();
+                } else {
+                    SweetAlert.swal("Cancelled", "Next time don't click it.", "error");
+                }
+            });
+    };
+
+
 }]);
 
