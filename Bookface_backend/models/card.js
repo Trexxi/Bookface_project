@@ -32,5 +32,6 @@ module.exports.findAllCards =  function(req, res) {
 };
 
 module.exports.deletePost = function(id, callback) {
-  Card.findByIdAndRemove({_id: id}, callback);
+    var query = {_id: id.toString()};
+    Card.findOneAndRemove(query, function(err){console.log(err)});
 };

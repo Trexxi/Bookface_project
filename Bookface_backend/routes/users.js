@@ -17,7 +17,9 @@ router.post('/newCard', function(req, res, next) {
 });
 
 router.post('/deleteCard', function(req, res, next) {
-    Card.deletePost('5a7852f5c1b23b3d4440c9f0');
+    Card.deletePost(req.body._id);
+    res.send('deleteddddd');
+    res.end();
 });
 
 module.exports = router;
