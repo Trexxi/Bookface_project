@@ -104,8 +104,20 @@ h1 {
 word-wrap: break-word;
   margin-left: 34px;
   margin-right: 34px;
+    margin-top: -10px;
 }
 
+#iconForClosing {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: 20px;
+    margin-top: 15px;
+    color:#464c57;
+}
 
+#iconForClosing:hover {
+    color: #222222;
+    cursor: pointer;
+}
 
 
