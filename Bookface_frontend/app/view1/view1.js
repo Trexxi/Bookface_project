@@ -67,23 +67,29 @@ angular.module('myApp.view1', ['ngRoute'])
     };
 
     $scope.getCards();
+    $scope.isActive = false;
+    $scope.activeButton = function() {
+        $scope.isActive = !$scope.isActive;
+    };
 
 
 //  Make textarea bigger when on focus
     $scope.areaOfEffect = function(){
         var textElement = angular.element(document.querySelector('#messageArea'));
-        //console.log(textElement);
-        textElement.attr('rows', '5');
+            $scope.activeButton();
+            textElement.attr('rows', '5');
         //console.log(textElement);
     };
 //  Make texarea smaller if the textarea value is 0
     $scope.notAreaOfEffect = function() {
         var textInBox = $scope.myText;
+
         var textElement = angular.element(document.querySelector('#messageArea'));
         if (textInBox === undefined){
             textInBox = "";
         } if (textInBox.length === 0) {
             textElement.attr('rows', '1');
+
         }
     };
 // Submit to the database
@@ -100,9 +106,18 @@ angular.module('myApp.view1', ['ngRoute'])
 
         } else {
             alert("Can't send empty message");
-           var fuckingDate = $scope.date = new Date();
-            console.log(fuckingDate);
         }
         $scope.getCards();
     };
+// Delete card
+    $scope.removeCard = function(id){
+        var answer = confirm("Are you sure?");
+        if(answer){
+            alert("DELETEEED");
+        } else {
+            alert("Well.. don't fucking click it then!");
+        }
+
+
+    }
 }]);

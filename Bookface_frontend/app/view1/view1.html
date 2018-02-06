@@ -1,15 +1,17 @@
 <div class="cardInput">
     <form novalidate>
         <textarea id="messageArea" name="message" rows="1" cols="50" ng-focus="areaOfEffect()"
-                  ng-blur="notAreaOfEffect()" ng-model="myText" placeholder="What's on your mind?">
+                  ng-blur="notAreaOfEffect()" ng-model="myText" placeholder="What's on your mind?" maxlength="140">
         </textarea>
-        <input type="submit" value="Publish" id="submitButton" ng-click="pushingForward()">
+        <input type="submit" value="Publish" id="submitButton" ng-click="pushingForward()"
+        ng-class="{'active' : isActive}">
     </form>
 
 </div>
 
 
 <div class="cardObject" ng-repeat="user in users">
-    <p>{{user.message}}</p>
+    <p id="messageBra">{{user.message}}</p>
     <p>{{user.date | date: "EEEE, MMMM d h:m:ss, y"}}</p>
+    <button ng-click="removeCard($scope.id)" id="deleteButton">Delete card</button>
 </div>
