@@ -109,15 +109,18 @@ angular.module('myApp.view1', ['ngRoute'])
         }
         $scope.getCards();
     };
+
+
 // Delete card
     $scope.removeCard = function(id){
-        var answer = confirm("Are you sure?");
-        if(answer){
-            alert("DELETEEED");
-        } else {
-            alert("Well.. don't fucking click it then!");
-        }
+        console.log(id);
+        //var answer = confirm("Are you sure?");
+        //if(answer){
+        //    alert("DELETEEED");
+        //} else {
+         //   alert("Well.. don't fucking click it then!");
+        //}
 
 
-    }
+    };
 }]);
