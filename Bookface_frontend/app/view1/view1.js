@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute', 'oitozero.ngSweetAlert'])
+angular.module('myApp.view1', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view1', {
@@ -9,7 +9,7 @@ angular.module('myApp.view1', ['ngRoute', 'oitozero.ngSweetAlert'])
   });
 }])
 
-.controller('View1Ctrl', ['$scope', '$http', 'SweetAlert', function($scope, $http, SweetAlert) {
+.controller('View1Ctrl', ['$scope', '$http', function($scope, $http) {
     var vm = this;
     // Get Cards info
    $scope.getCards = function() {
@@ -150,7 +150,7 @@ angular.module('myApp.view1', ['ngRoute', 'oitozero.ngSweetAlert'])
            $scope.notAreaOfEffect();
 
         } else {
-            SweetAlert.swal("Nope.", "You can't send empty messages..", "error");
+            //SweetAlert.swal("Nope.", "You can't send empty messages..", "error");
         }
         $scope.getCards();
     };
@@ -159,30 +159,30 @@ angular.module('myApp.view1', ['ngRoute', 'oitozero.ngSweetAlert'])
         console.log("is it working?" + rId);
     };
 
-    $scope.confirmDelete = function(id) {
-        console.log(id);
-        SweetAlert.swal({
-            title:"Are you sure?",
-            text:"This card will be removed permamently.",
-            type:"warning",
-            showCancelButton:true,
-            confirmButtonColor: "#d80f0f",
-            confirmButtonText:"Delete!",
-            cancelButtonText:"Cancel",
-            closeOnConfirm:false,
-            closeOnCancel:false
-        },
-            function (isConfirm) {
-                if (isConfirm) {
-                    $scope.removeData(id);
-                    SweetAlert.swal("Deleted!", "", "success");
-                    $scope.getCards();
-                } else {
-                    SweetAlert.swal("Cancelled", "Next time don't click it.", "error");
-                }
-            });
-    };
+/* $scope.confirmDelete = function(id) {
+     console.log(id);
+     SweetAlert.swal({
+         title:"Are you sure?",
+         text:"This card will be removed permamently.",
+         type:"warning",
+         showCancelButton:true,
+         confirmButtonColor: "#d80f0f",
+         confirmButtonText:"Delete!",
+         cancelButtonText:"Cancel",
+         closeOnConfirm:false,
+         closeOnCancel:false
+     },
+         function (isConfirm) {
+             if (isConfirm) {
+                 $scope.removeData(id);
+                 SweetAlert.swal("Deleted!", "", "success");
+                 $scope.getCards();
+             } else {
+                 SweetAlert.swal("Cancelled", "Next time don't click it.", "error");
+             }
+         });
+ };
 
-
+*/
 }]);
 
