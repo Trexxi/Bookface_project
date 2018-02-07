@@ -6,6 +6,7 @@ angular.module('myApp', [
   'myApp.cards',
   'myApp.login',
   'myApp.logout',
+  'myApp.changePassword',
   'myApp.version'
 ]).
 config(['$locationProvider', '$routeProvider', '$httpProvider', function($locationProvider, $routeProvider, $httpProvider) {
