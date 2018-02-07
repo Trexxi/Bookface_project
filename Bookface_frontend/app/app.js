@@ -4,6 +4,7 @@
 angular.module('myApp', [
   'ngRoute',
   'myApp.cards',
+  'myApp.login',
   'myApp.version'
 ]).
 config(['$locationProvider', '$routeProvider', '$httpProvider', function($locationProvider, $routeProvider, $httpProvider) {

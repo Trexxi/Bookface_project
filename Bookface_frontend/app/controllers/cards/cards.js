@@ -4,7 +4,7 @@ angular.module('myApp.cards', ['ngRoute'])
 
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/cards', {
-            templateUrl: '../../views/cards.html',
+            templateUrl: '../../views/cards/cards.html',
             controller: 'CardsCtrl'
         });
     }])
@@ -12,7 +12,7 @@ angular.module('myApp.cards', ['ngRoute'])
     .controller('CardsCtrl', ['$scope', '$http','$location','$rootScope', function ($scope, $http, $location, $rootScope) {
 
       $scope.init = function(){
-        //$scope.validateLogin();
+          $scope.validateLogin();
       };
 
       $scope.validateLogin = function() {
@@ -64,8 +64,8 @@ angular.module('myApp.cards', ['ngRoute'])
         $scope.postData = function () {
             var data = {
                 message: $scope.myText,
-                date: $scope.date = new Date()
-                //add token path here
+                date: $scope.date = new Date(),
+                token:$rootScope.token
             };
             $http.post('http://localhost:3000/users/newCard', serializeData(data), {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
                 .success(function (data, status, headers, config) {
