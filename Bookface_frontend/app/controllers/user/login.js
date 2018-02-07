@@ -49,22 +49,28 @@ angular.module('myApp.login', ['ngRoute'])
         };
 
         $scope.login = function() {
-            var data = {
-                username: $scope.username.toString(),
-                password: $scope.password.toString()
-            };
-            $http.post('http://localhost:3000/users/login', serializeData(data), {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
-                .success(function (data, status, headers, config) {
-                    $rootScope.token = data.token;
-                    $location.path('/cards');
-                })
-                .error(function (data, status, header, config) {
-                    console.log("Status: ", status);
-                    if(status === 401) {
-                        $scope.error = 'User/password combination not found in the database';
-                    } else {
-                        $scope.error = 'Application problem, please let us know';
-                    }
-                });
+
+            console.log($scope.username, $scope.password);
+            if(typeof $scope.username !== "undefined" && typeof $scope.password !== "undefined") {
+                var data = {
+                    username: $scope.username.toString(),
+                    password: $scope.password.toString()
+                };
+                $http.post('http://localhost:3000/users/login', serializeData(data), {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
+                    .success(function (data, status, headers, config) {
+                        $rootScope.token = data.token;
+                        $location.path('/cards');
+                    })
+                    .error(function (data, status, header, config) {
+                        console.log("Status: ", status);
+                        if (status === 401) {
+                            $scope.error = 'User/password combination not found in the database';
+                        } else {
+                            $scope.error = 'Application problem, please let us know';
+                        }
+                    });
+            } else {
+                $scope.error = 'Please enter the fields';
+            }
         };
     }]);
