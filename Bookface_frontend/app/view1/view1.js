@@ -27,6 +27,7 @@ angular.module('myApp.view1', ['ngRoute'])
         var data = {
             message: $scope.myText,
             date: $scope.date = new Date()
+            //add token path here
         };
 
         $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -61,6 +62,11 @@ angular.module('myApp.view1', ['ngRoute'])
         $http.post('http://localhost:3000/users/newCard', serializeData(data), {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
             .success(function (data, status, headers, config) {
                 console.log("bra jobbat");
+                console.log(status,"status");
+                console.log(data,"data");
+                console.log(headers, "headers");
+                console.log(config, "config");
+                //only need success message on this one
             })
             .error(function (data, status, header, config) {
                 alert("XD");
