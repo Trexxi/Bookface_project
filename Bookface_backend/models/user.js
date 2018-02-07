@@ -21,29 +21,19 @@ var UserSchema = mongoose.Schema({
 var User = module.exports = mongoose.model('User',UserSchema);
 
 module.exports.logUserIn = function(req, res) {
-    /*var user = {
-        email: req.body.email,
-        password:req.body.password
-    };*/
     var user = {
-        email: 'linusbeck@hotmail.com',
-        password: 'hehe123'
+        username: req.body.username,
+        password:req.body.password
     };
 
-    console.log(req.body);
     /*TODO: Use user from database instead*/
-    if(req.body.email === user.email) {
         console.log("user: ",user);
         var token = jwt.sign(user,process.env.JWT_KEY, {expiresIn: "1h"});
+        process.env.JWT_TOKEN = token;
         return res.status(200).json({
             message: "Auth successful",
             token:token
         });
-    } else {
-        res.status(401).json({
-            message: 'Auth failed'
-        })
-    }
 };
 
 /**
@@ -78,9 +68,9 @@ module.exports.comparePassword = function(candidatePassword, hash, callback){
     });
 };
 
-module.exports.changePassword = function(password, user) {
+module.exports.changePassword = function(newPassword, user) {
     bcrypt.genSalt(10, function(err, salt) {
-        bcrypt.hash(password, salt, function(err, hash) {
+        bcrypt.hash(newPassword, salt, function(err, hash) {
             user.password = hash;
             user.save(user);
         });

@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
+var session = require('express-session');
 
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
@@ -37,6 +38,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Express Session
+app.use(session({
+    secret: 'secret',
+    saveUninitialized: true,
+    resave: true
+}));
+
 // Passport init
 app.use(passport.initialize());
 app.use(passport.session());
@@ -48,6 +56,11 @@ app.use(flash());
  */
 app.use(function(req, res, next) {
     res.append('Access-Control-Allow-Origin', ['*']);
+    next();
+});
+
+app.use(function(req, res, next) {
+    res.locals.user = req.user || null;
     next();
 });
 

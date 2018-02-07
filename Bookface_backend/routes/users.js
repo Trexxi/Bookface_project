@@ -79,10 +79,20 @@ router.post('/updateCard', function(req, res, next) {
 router.post('/login',
     passport.authenticate('local'),
     function (req, res) {
-        res.status(200).json({
-            message: 'Authenitcation successful'
-        });
+    console.log("this is the shti", req.body);
+        User.logUserIn(req, res);
+});
+
+router.post('/change-password', checkAuth, function(req, res, next) {
+    console.log(req.body.newPassword);
+    console.log(req.user);
+    User.changePassword(req.body.newPassword,req.user);
+    res.status(200).json({
+        message: 'Password changed',
+        user:req.user,
+        token:process.env.JWT_TOKEN
     });
+});
 
 router.get('/logout', checkAuth, function(req, res, next) {
     console.log(req.user, " :is now being logged out");
