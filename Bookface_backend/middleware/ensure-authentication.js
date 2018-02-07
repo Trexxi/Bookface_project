@@ -1,3 +1,8 @@
+/**
+ * this is an option to check-auth,
+ * usage of this deppends on
+ */
+
 module.exports.ensureAuthenticated = function(req, res, next){
     if(req.isAuthenticated()){
         return next();

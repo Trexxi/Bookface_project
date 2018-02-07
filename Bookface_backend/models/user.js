@@ -26,7 +26,7 @@ module.exports.logUserIn = function(req, res) {
         password:req.body.password
     };*/
     var user = {
-        email:'linusbeck@hotmail.com',
+        email: 'linusbeck@hotmail.com',
         password: 'hehe123'
     };
 
@@ -86,3 +86,5 @@ module.exports.changePassword = function(password, user) {
         });
     });
 };
+
+//TODO: implement check if user exists and call it in create user

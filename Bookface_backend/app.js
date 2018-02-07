@@ -7,6 +7,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var flash = require('connect-flash');
 
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
@@ -34,6 +37,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Passport init
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Connect Flash
+app.use(flash());
 /**
  * CORS, has to be added before routes
  */

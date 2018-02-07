@@ -76,13 +76,20 @@ router.post('/updateCard', function(req, res, next) {
     res.end();
 });
 
-router.post('/login', function(req, res, next) {
-    console.log(req.body);
-    /*
-    *User.logUserIn(req,res);
-    */
-    User.createUser(req, res);
-    res.end();
+router.post('/login',
+    passport.authenticate('local'),
+    function (req, res) {
+        res.status(200).json({
+            message: 'Authenitcation successful'
+        });
+    });
+
+router.get('/logout', checkAuth, function(req, res, next) {
+    console.log(req.user, " :is now being logged out");
+    req.logout();
+    res.status(200).json({
+        message: 'Logout successful'
+    });
 });
 
 router.post('/createUser', function(req, res, next) {
