@@ -15,8 +15,20 @@ var CardSchema = mongoose.Schema({
 
 var Card = module.exports = mongoose.model('Card', CardSchema);
 
-module.exports.createNewCard = function(newCard) {
-    newCard.save();
+module.exports.createNewCard = function(newCard, res) {
+    console.log(newCard);
+
+    if(typeof newCard.message !== "undefined" && newCard.message !== "") {
+        newCard.save();
+        res.status(200).json({
+            message: 'Card was created',
+            card:newCard
+        });
+    } else {
+        res.status(406).json({
+            message: 'Card has to have a message included'
+        });
+    }
 };
 
 module.exports.findAllCards =  function(req, res) {
