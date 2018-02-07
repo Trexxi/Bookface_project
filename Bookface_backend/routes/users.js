@@ -55,7 +55,7 @@ router.get('/', function(req, res, next) {
     Card.findAllCards(req, res);
 });
 
-router.post('/newCard', checkAuth, function(req, res, next) {
+router.post('/newCard', function(req, res, next) {
     var cardData = req.body;
     console.log(req.body);
     var newCard = new Card(cardData);
