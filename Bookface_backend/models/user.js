@@ -48,10 +48,10 @@ module.exports.logUserIn = function(req, res) {
 
 /**
  * Needs:
- * name
- * email
- * username
- * password
+ * ------name
+ * ------email
+ * ------username
+ * ------password
  */
 module.exports.createUser = function(newUser, callback){
     bcrypt.genSalt(10, function(err, salt) {
