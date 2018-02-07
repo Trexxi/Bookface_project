@@ -51,10 +51,17 @@ angular.module('myApp.login', ['ngRoute'])
         $scope.login = function() {
 
             console.log($scope.username, $scope.password);
-            if(typeof $scope.username !== "undefined" && typeof $scope.password !== "undefined") {
+            var fieldsAreEmpty = function() {
+                if(typeof $scope.username !== "undefined" && typeof $scope.password !== "undefined") {
+                    return false
+                } else {
+                    return true
+                }
+            };
+            if(!fieldsAreEmpty()) {
                 var data = {
                     username: $scope.username.toString(),
-                    password: $scope.password.toString()
+                    password:  $scope.password.toString()
                 };
                 $http.post('http://localhost:3000/users/login', serializeData(data), {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
                     .success(function (data, status, headers, config) {
@@ -66,6 +73,7 @@ angular.module('myApp.login', ['ngRoute'])
                         if (status === 401) {
                             $scope.error = 'User/password combination not found in the database';
                         } else {
+                            //TODO:(BUG) sometimes triggers when there's no application error
                             $scope.error = 'Application problem, please let us know';
                         }
                     });

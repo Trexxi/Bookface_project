@@ -16,7 +16,7 @@ angular.module('myApp.cards', ['ngRoute'])
       };
 
       $scope.validateLogin = function() {
-              if(typeof $rootScope.token === "undefined") {
+              if(typeof $rootScope.token === "undefined" || $rootScope.token === null) {
                   $location.path('/login');
               }
       };
