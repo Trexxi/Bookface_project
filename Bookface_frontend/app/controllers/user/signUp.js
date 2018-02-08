@@ -61,6 +61,9 @@ angular.module('myApp.signUp', ['ngRoute'])
         };
 
 
+        /**
+         * TODO: change this validation, as its not that good and doesnt validate status if there was an error in db etc
+         */
         $scope.signUp = function() {
             if(!$scope.fieldsAreEmpty()) {
                 if($scope.password === $scope.password2) {
