@@ -7,6 +7,7 @@ angular.module('myApp', [
   'myApp.cards',
   'myApp.login',
   'myApp.logout',
+  'myApp.signUp',
   'myApp.changePassword',
   'myApp.version'
 ]).

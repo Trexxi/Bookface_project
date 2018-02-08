@@ -15,13 +15,12 @@ angular.module('myApp.cards', ['ngRoute'])
           $scope.validateLogin();
       };
 
-      $scope.validateLogin = function() {
-              if(typeof $rootScope.token === "undefined" || $rootScope.token === null) {
-                  $location.path('/login');
-              }
-      };
+        $scope.validateLogin = function() {
+            if(typeof sessionStorage.token === "undefined") {
+                $location.path('/login');
+            }
+        };
 
-      console.log($cookies.getAll());
         function serializeData(data) {
             // If this is not an object, defer to native stringification.
             if (!angular.isObject(data)) {
@@ -66,7 +65,7 @@ angular.module('myApp.cards', ['ngRoute'])
             var data = {
                 message: $scope.myText,
                 date: $scope.date = new Date(),
-                token:$rootScope.token
+                token:sessionStorage.token
             };
             $http.post('http://localhost:3000/users/newCard', serializeData(data), {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
                 .success(function (data, status, headers, config) {

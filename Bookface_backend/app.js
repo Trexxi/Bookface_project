@@ -39,7 +39,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(cors({credentials:true, origin: 'http://localhost:8000'}));
+
+/**
+ * CORS settings, allowed domain etc
+ */
+app.use(cors({
+    credentials:true,
+    origin: 'http://localhost:8000'
+}));
 
 // Express Session
 app.use(session({
@@ -57,12 +64,6 @@ app.use(passport.session());
 
 // Connect Flash
 app.use(flash());
-/**
- * CORS, has to be added before routes
- */
-app.use(function(req, res, next) {
-    next();
-});
 
 app.use(function(req, res, next) {
     res.locals.user = req.user || null;
@@ -78,10 +79,6 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
-
-
-
-
 
 // error handler
 app.use(function(err, req, res, next) {

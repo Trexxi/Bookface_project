@@ -15,7 +15,7 @@ angular.module('myApp.changePassword', ['ngRoute'])
         };
 
         $scope.validateLogin = function() {
-            if (typeof $rootScope.token === "undefined" || $rootScope.token === null) {
+            if(typeof sessionStorage.token === "undefined") {
                 $location.path('/login');
             }
         };
@@ -56,7 +56,7 @@ angular.module('myApp.changePassword', ['ngRoute'])
                 if($scope.newPassword !== "") {
                     //change password
                     var data = {
-                        token: $rootScope.token.toString(),
+                        token: sessionStorage.token.toString(),
                         newPassword: $scope.newPassword.toString()
                     };
                     console.log(data);
@@ -68,6 +68,7 @@ angular.module('myApp.changePassword', ['ngRoute'])
                             console.log(data, "data");
                             console.log(headers, "headers");
                             console.log(config, "config");
+                            $location.path('/logout');
                             //only need success message on this one
                         })
                         .error(function (data, status, header, config) {

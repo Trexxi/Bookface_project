@@ -9,7 +9,9 @@ angular.module('myApp.logout', ['ngRoute'])
         });
     }])
 
-    .controller('LogoutCtrl', ['$scope', '$http','$location','$rootScope', function ($scope, $http, $location, $rootScope) {
-        $rootScope.token = null;
+    .controller('LogoutCtrl', ['$scope', '$http','$location','$rootScope','$cookies', function ($scope, $http, $location, $rootScope, $cookies) {
+
+        $cookies.remove('connect.sid');
+        delete sessionStorage.token;
         $location.path('/login');
     }]);

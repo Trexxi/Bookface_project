@@ -99,7 +99,7 @@ router.post('/change-password', checkAuth, function(req, res, next) {
     });
 });
 
-router.get('/logout', function(req, res, next) {
+router.post('/logout', function(req, res, next) {
     console.log(req.user, " :is now being logged out");
     //check if user exists
     req.session.destroy(function() {

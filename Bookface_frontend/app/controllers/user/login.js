@@ -10,6 +10,16 @@ angular.module('myApp.login', ['ngRoute'])
     }])
 
     .controller('LoginCtrl', ['$scope', '$http','$location','$rootScope','$cookies','$browser', function ($scope, $http, $location, $rootScope, $cookies, $browser) {
+        $scope.init = function() {
+          $scope.validateLogin();
+        };
+
+        $scope.validateLogin = function() {
+            if(typeof sessionStorage.token !== "undefined") {
+                $location.path('/cards');
+            }
+        };
+
         function serializeData(data) {
             // If this is not an object, defer to native stringification.
             if (!angular.isObject(data)) {
@@ -37,17 +47,6 @@ angular.module('myApp.login', ['ngRoute'])
             var source = buffer.join("&").replace(/%20/g, "+");
             return (source);
         }
-
-        $scope.init = function() {
-          $scope.validateLogin();
-        };
-
-        $scope.validateLogin = function() {
-            if(typeof $rootScope.token === "string") {
-                $location.path('/cards');
-            }
-        };
-
         $scope.username = "beckman97";
         $scope.password = "hehe123";
         $scope.login = function() {
@@ -67,7 +66,7 @@ angular.module('myApp.login', ['ngRoute'])
                 };
                 $http.post('http://localhost:3000/users/login', serializeData(data), {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
                     .success(function (data, status, headers, config) {
-                        $rootScope.token = data.token;
+                        sessionStorage.token = data.token;
                         console.log(headers());
                         console.log(data);
                         console.log(config);
