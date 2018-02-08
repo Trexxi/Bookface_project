@@ -9,7 +9,7 @@ angular.module('myApp.cards', ['ngRoute'])
         });
     }])
 
-    .controller('CardsCtrl', ['$scope', '$http','$location','$rootScope','$cookies', function ($scope, $http, $location, $rootScope, $cookies) {
+    .controller('CardsCtrl', ['$scope', '$http','$location','$rootScope','$cookies',  function ($scope, $http, $location, $rootScope, $cookies) {
 
       $scope.init = function(){
           $scope.validateLogin();
@@ -135,7 +135,7 @@ angular.module('myApp.cards', ['ngRoute'])
                 $scope.notAreaOfEffect();
 
             } else {
-                //SweetAlert.swal("Nope.", "You can't send empty messages..", "error");
+                alert("NO");
             }
             $scope.getCards();
         };
