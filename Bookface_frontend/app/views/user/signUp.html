@@ -1,11 +1,15 @@
 <div ng-init="init()">
+    <p style="color:red">{{error}}</p>
+    <br>
     <input type="text" placeholder="name" ng-model="name">
     <br>
-    <input type="text" placeholder="email" ng-model="email">
+    <input type="email" placeholder="email" ng-model="email">
     <br>
     <input type="text" placeholder="username" ng-model="username">
     <br>
     <input type="text" placeholder="password" ng-model="password">
+    <br>
+    <input type="text" placeholder="Repeat password" ng-model="password2">
     <br>
     <button ng-click="signUp()">Sign up</button>
 </div>
