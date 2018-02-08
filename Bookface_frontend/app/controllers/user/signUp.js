@@ -49,21 +49,42 @@ angular.module('myApp.signUp', ['ngRoute'])
         }
 
 
+        $scope.fieldsAreEmpty = function() {
+            if(typeof $scope.name !== "undefined"&&
+                typeof $scope.email !== "undefined"&&
+                typeof $scope.username !== "undefined"&&
+                typeof $scope.password !== "undefined") {
+                return false
+            } else {
+                return true;
+            }
+        };
+
 
         $scope.signUp = function() {
-            var data = {
-                name: $scope.name.toString(),
-                email: $scope.email.toString(),
-                username: $scope.username.toString(),
-                password: $scope.password.toString()
-            };
-            $http.post('http://localhost:3000/users/createUser', serializeData(data), {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
-                .success(function (data, status, headers, config) {
-                    $location.path('/login');
-                })
-                .error(function (data, status, header, config) {
-                    console.log("Status: ", status);
-                    //ERROR HANDLE
-                });
+            if(!$scope.fieldsAreEmpty()) {
+                if($scope.password === $scope.password2) {
+                    var data = {
+                        name: $scope.name.toString(),
+                        email: $scope.email.toString(),
+                        username: $scope.username.toString(),
+                        password: $scope.password.toString()
+                    };
+                    $http.post('http://localhost:3000/users/createUser', serializeData(data), {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
+                        .success(function (data, status, headers, config) {
+                            $location.path('/login');
+                        })
+                        .error(function (data, status, header, config) {
+                            console.log("Status: ", status);
+                            //ERROR HANDLE
+                        });
+                } else {
+                    $scope.error ="Passwords must match";
+                }
+
+            } else {
+                $scope.error = "You must fill all fields or email is not valid";
+            }
+
         };
     }]);
