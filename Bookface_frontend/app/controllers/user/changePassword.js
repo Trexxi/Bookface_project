@@ -47,6 +47,7 @@ angular.module('myApp.changePassword', ['ngRoute'])
             var source = buffer.join("&").replace(/%20/g, "+");
             return (source);
         }
+        $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
         $scope.changePassword = function() {
             //must match
@@ -55,9 +56,11 @@ angular.module('myApp.changePassword', ['ngRoute'])
                 if($scope.newPassword !== "") {
                     //change password
                     var data = {
-                        token: $rootScope.token,
-                        newPassword: $scope.newPassword
+                        token: $rootScope.token.toString(),
+                        newPassword: $scope.newPassword.toString()
                     };
+                    console.log(data);
+                    console.log(data.token, 'wtf');
                     $http.post('http://localhost:3000/users/change-password', serializeData(data), {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
                         .success(function (data, status, headers, config) {
                             console.log("bra jobbat");

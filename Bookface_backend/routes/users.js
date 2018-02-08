@@ -6,6 +6,7 @@ var User = require('../models/user');
 var checkAuth = require('../middleware/check-auth.js');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var session = require('express-session');
 
 /**
  * Start of passport code
@@ -89,6 +90,7 @@ router.post('/login',
 router.post('/change-password', checkAuth, function(req, res, next) {
     console.log(req.body.newPassword);
     console.log(req.user);
+
     User.changePassword(req.body.newPassword,req.user);
     res.status(200).json({
         message: 'Password changed',
@@ -100,7 +102,10 @@ router.post('/change-password', checkAuth, function(req, res, next) {
 router.get('/logout', function(req, res, next) {
     console.log(req.user, " :is now being logged out");
     //check if user exists
-    req.logout();
+    req.session.destroy(function() {
+        res.clearCookie('connect.sid');
+        res.redirect('/');
+    });
     res.status(200).json({
         message: 'Logout successful'
     });

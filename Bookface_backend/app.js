@@ -14,6 +14,7 @@ var session = require('express-session');
 
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
+var cors = require('cors');
 
 var db = mongoose.connect('mongodb://localhost:27017/bookface', {
     /* other options */
@@ -38,11 +39,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(cors({credentials:true, origin: 'http://localhost:8000'}));
+
 // Express Session
 app.use(session({
     secret: 'secret',
     saveUninitialized: true,
-    resave: true
+    resave: true,
+    cookie:{
+        httpOnly:false
+    }
 }));
 
 // Passport init
@@ -55,7 +61,6 @@ app.use(flash());
  * CORS, has to be added before routes
  */
 app.use(function(req, res, next) {
-    res.append('Access-Control-Allow-Origin', ['*']);
     next();
 });
 

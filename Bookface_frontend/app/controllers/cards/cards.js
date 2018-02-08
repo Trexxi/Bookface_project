@@ -9,7 +9,7 @@ angular.module('myApp.cards', ['ngRoute'])
         });
     }])
 
-    .controller('CardsCtrl', ['$scope', '$http','$location','$rootScope', function ($scope, $http, $location, $rootScope) {
+    .controller('CardsCtrl', ['$scope', '$http','$location','$rootScope','$cookies', function ($scope, $http, $location, $rootScope, $cookies) {
 
       $scope.init = function(){
           $scope.validateLogin();
@@ -21,6 +21,7 @@ angular.module('myApp.cards', ['ngRoute'])
               }
       };
 
+      console.log($cookies.getAll());
         function serializeData(data) {
             // If this is not an object, defer to native stringification.
             if (!angular.isObject(data)) {
