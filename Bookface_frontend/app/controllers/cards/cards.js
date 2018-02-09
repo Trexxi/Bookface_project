@@ -95,7 +95,8 @@ angular.module('myApp.cards', ['ngRoute', 'oitozero.ngSweetAlert'])
 
         $scope.removeData = function (id) {
             var data = {
-                _id: id
+                _id: id,
+                token:sessionStorage.token
             };
             $http.post('http://localhost:3000/users/deleteCard', serializeData(data), {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
                 .success(function (data, status, headers, config) {
@@ -156,7 +157,7 @@ angular.module('myApp.cards', ['ngRoute', 'oitozero.ngSweetAlert'])
             console.log("is it working?" + rId);
         };
 
-        /* $scope.confirmDelete = function(id) {
+         $scope.confirmDelete = function(id) {
              console.log(id);
              SweetAlert.swal({
                  title:"Are you sure?",
@@ -180,6 +181,6 @@ angular.module('myApp.cards', ['ngRoute', 'oitozero.ngSweetAlert'])
                  });
          };
 
-        */
+
     }]);
 
