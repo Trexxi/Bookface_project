@@ -125,4 +125,74 @@ word-wrap: break-word;
     cursor: pointer;
 }
 
+.errorMessage {
+  color:red;
+}
+
+.loginPage {
+  min-height: 70px;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: center;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 36px;
+}
+
+.loginSquare {
+  background-color: white;
+  border-radius: 15px;
+  width: 40%;
+  margin: auto;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2), 0 7px 26px 0 rgba(0, 0, 0, 0.19);
+}
+
+.loginDetails {
+  text-align: left;
+  margin-left: 20px;
+  margin-bottom: 4px;
+}
+
+.logininput {
+  border: #464c57 1px solid;
+  border-radius: 4px;
+  padding-left: 21px;
+  margin-left: 7px;
+  padding-top: 5px;
+}
+
+.buttonLogin {
+  border: solid 1px green;
+  border-radius: 3px;
+  padding: 3px;
+  padding-left: 40px;
+  padding-right: 40px;
+  color: white;
+  margin-top: 10px;
+  background: linear-gradient(-180deg, #34d058 0%, #28a745 90%);
+}
+
+.buttonLogin:hover{
+  background: linear-gradient(-180deg, #2fcb53 0%, #269f42 90%);
+}
+
+.sigup {
+  color:black;
+}
+
+.loginsignup{
+  color:white;
+}
+
+.input-icon{
+  position: absolute;
+  left: 19px;
+  top:calc(50% - 0.5em);
+}
+.input-wrapper{
+  position: relative;
+}
 
