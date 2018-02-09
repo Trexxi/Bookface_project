@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.cards', ['ngRoute'])
+angular.module('myApp.cards', ['ngRoute', 'oitozero.ngSweetAlert'])
 
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/cards', {
@@ -9,7 +9,7 @@ angular.module('myApp.cards', ['ngRoute'])
         });
     }])
 
-    .controller('CardsCtrl', ['$scope', '$http','$location','$rootScope','$cookies',  function ($scope, $http, $location, $rootScope, $cookies) {
+    .controller('CardsCtrl', ['$scope', '$http','$location','$rootScope','$cookies', 'SweetAlert',  function ($scope, $http, $location, $rootScope, $cookies, SweetAlert) {
 
       $scope.init = function(){
           $scope.validateLogin();
@@ -57,12 +57,16 @@ angular.module('myApp.cards', ['ngRoute'])
         var vm = this;
         // Get Cards info
         $scope.getCards = function () {
-            $http({method: 'GET', url: "http://localhost:3000/users"})
-                .success(function (data) {
+            var data = {
+                token:sessionStorage.token
+            };
+            $http.post('http://localhost:3000/users', serializeData(data), {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
+                .success(function (data, status, headers, config) {
                     $scope.users = data;
+                    //only need success message on this one
                 })
-                .error(function (error) {
-                    console.log(error);
+                .error(function (data, status, header, config) {
+                    alert("XD");
                 });
         };
         // Post data to database
@@ -140,7 +144,7 @@ angular.module('myApp.cards', ['ngRoute'])
                 $scope.notAreaOfEffect();
 
             } else {
-                alert("NO");
+                SweetAlert.swal('Nope.', 'You cannot send empty messages', 'error');
             }
             $scope.getCards();
         };

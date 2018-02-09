@@ -9,7 +9,8 @@ angular.module('myApp', [
   'myApp.logout',
   'myApp.signUp',
   'myApp.changePassword',
-  'myApp.version'
+  'myApp.version',
+    'oitozero.ngSweetAlert'
 ]).
 config(['$locationProvider', '$routeProvider', '$httpProvider', function($locationProvider, $routeProvider, $httpProvider) {
   $locationProvider.hashPrefix('!');
