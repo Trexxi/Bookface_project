@@ -52,14 +52,21 @@ passport.deserializeUser(function (id, done) {
  * if you want to checkAuth here you might have to make it a post request, and then return the data.
  * So that the front-end can get it and render it
  */
-router.get('/', function(req, res, next) {
+router.get('/', checkAuth, function(req, res, next) {
     Card.findAllCards(req, res);
 });
 
 router.post('/newCard', checkAuth, function(req, res, next) {
-    var cardData = req.body;
-    console.log(req.body);
+
+    var cardData = {
+        message:req.body.message,
+        date: req.body.date,
+        user: req.user._id
+    };
+
     var newCard = new Card(cardData);
+    console.log(req.user._id,"ewfkoewfpoewkofewkofwepofkewpofkewofewfoewfewopkfewpofkewpofewkpofewk");
+    console.log(newCard);
     Card.createNewCard(newCard, res);
     res.end();
 });
@@ -102,10 +109,8 @@ router.post('/change-password', checkAuth, function(req, res, next) {
 router.post('/logout', function(req, res, next) {
     console.log(req.user, " :is now being logged out");
     //check if user exists
-    req.session.destroy(function() {
-        res.clearCookie('connect.sid');
-        res.redirect('/');
-    });
+    req.logOut();
+    console.log(req.user);
     res.status(200).json({
         message: 'Logout successful'
     });

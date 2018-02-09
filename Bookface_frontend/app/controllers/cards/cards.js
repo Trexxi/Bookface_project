@@ -21,6 +21,11 @@ angular.module('myApp.cards', ['ngRoute'])
             }
         };
 
+        /**
+         * make this function reusable
+         * @param data
+         * @returns {string}
+         */
         function serializeData(data) {
             // If this is not an object, defer to native stringification.
             if (!angular.isObject(data)) {

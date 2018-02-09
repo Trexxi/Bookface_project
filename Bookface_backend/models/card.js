@@ -9,7 +9,10 @@ var CardSchema = mongoose.Schema({
         required: true
     },
     date: {
-        type: 'Moment'
+        type: 'Date'
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId
     }
 });
 
@@ -18,7 +21,7 @@ var Card = module.exports = mongoose.model('Card', CardSchema);
 module.exports.createNewCard = function(newCard, res) {
     console.log(newCard);
 
-    if(typeof newCard.message !== "undefined" && newCard.message !== "") {
+    if(typeof newCard.message !== "undefined" && newCard.message !== ""&& typeof newCard.message !== "undefined") {
         newCard.save();
         res.status(200).json({
             message: 'Card was created',
@@ -36,7 +39,10 @@ module.exports.findAllCards =  function(req, res) {
         var cardMap = {};
 
         cards.forEach(function(card){
-            cardMap[card._id] = card;
+            console.log(req.user.id);
+            if(req.user._id === card.user) {
+                cardMap[card._id] = card;
+            }
         });
 
         res.send(cardMap);
