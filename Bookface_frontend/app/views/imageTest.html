@@ -1,0 +1,7 @@
+
+        <form>
+            <input type="file" ng-file-select="onFileSelect($files)" ng-model="imageSrc">
+            <!--  <input type="file" ng-file-select="onFileSelect($files)" multiple> -->
+        </form>
+
+        <img ng-src="{{imageSrc}}" />
