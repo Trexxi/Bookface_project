@@ -1,15 +1,32 @@
 <div ng-init="init()">
-    <p style="color:red">{{error}}</p>
-    <br>
-    <input type="text" placeholder="name" ng-model="name">
-    <br>
-    <input type="email" placeholder="email" ng-model="email">
-    <br>
-    <input type="text" placeholder="username" ng-model="username">
-    <br>
-    <input type="text" placeholder="password" ng-model="password">
-    <br>
-    <input type="text" placeholder="Repeat password" ng-model="password2">
-    <br>
-    <button ng-click="signUp()">Sign up</button>
-</div>
+    <div class="loginPage">
+    <div class="loginSquare">
+        <div class="backArrow">
+            <i id="backToLogin" class="fa fa-arrow-circle-left fa-lg" ng-click="backToLogin()"></i></div>
+        <p class="loginDetails">Name:</p>
+        <div class="input-wrapper">
+    <input type="text" placeholder="name" ng-model="name" class="logininput" id="name">
+        <label for="name" class="fa fa-smile input-icon"></label> </div>
+    <p class="loginDetails">E-mail:</p>
+        <div class="input-wrapper">
+    <input type="email" placeholder="email" ng-model="email" class="logininput" id="email">
+        <label for="email" class="fa fa-envelope input-icon"></label></div>
+    <p class="loginDetails">Username:</p>
+        <div class="input-wrapper">
+    <input type="text" placeholder="username" ng-model="username" class="logininput" id="username">
+        <label for="username" class="fa fa-user input-icon"></label></div>
+    <p class="loginDetails">Password:</p>
+        <div class="input-wrapper">
+    <input type="text" placeholder="password" ng-model="password" class="logininput" id="password">
+        <label for="password" class="fa fa-key input-icon"></label> </div>
+    <p class="loginDetails">Repeat Password:</p>
+        <div class="input-wrapper">
+    <input type="text" placeholder="Repeat password" ng-model="password2" class="logininput" id="password2">
+        <label for="password2" class="fa fa-key input-icon"></label>
+        </div>
+
+    <button class="buttonLogin" ng-click="signUp()">Sign up</button>
+    <p class="errorMessage">{{error}}</p>
+    </div>
+    </div>
+    </div>

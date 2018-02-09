@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.signUp', ['ngRoute'])
+angular.module('myApp.signUp', ['ngRoute', 'oitozero.ngSweetAlert'])
 
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/signUp', {
@@ -9,7 +9,7 @@ angular.module('myApp.signUp', ['ngRoute'])
         });
     }])
 
-    .controller('SignUpCtrl', ['$scope', '$http','$location','$rootScope', function ($scope, $http, $location, $rootScope) {
+    .controller('SignUpCtrl', ['$scope', '$http','$location','$rootScope','SweetAlert', function ($scope, $http, $location, $rootScope, SweetAlert) {
         $scope.init = function() {
             $scope.validateLogin();
         };
@@ -75,6 +75,7 @@ angular.module('myApp.signUp', ['ngRoute'])
                     };
                     $http.post('http://localhost:3000/users/createUser', serializeData(data), {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
                         .success(function (data, status, headers, config) {
+                            SweetAlert.swal("Success!", "Welcome to Bookface new user!", "success");
                             $location.path('/login');
                         })
                         .error(function (data, status, header, config) {
@@ -89,5 +90,9 @@ angular.module('myApp.signUp', ['ngRoute'])
                 $scope.error = "You must fill all fields or email is not valid";
             }
 
+        };
+
+        $scope.backToLogin = function(){
+            $location.path('/login');
         };
     }]);

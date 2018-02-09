@@ -1,15 +1,21 @@
 <div ng-init="init()">
-    <h1>Welcome to login, no style until css god comes</h1>
-    <!--Br so sick, who need css?-->
-    <br>
+    <div class="loginPage">
+    <h2 class="loginsignup">Log in to Bookface</h2>
 
-    <h2 style="color:red">{{error}}</h2>
-    <br>
-    <p>Dont have an account?</p> <a href="#!/signUp">Sign up here</a>
-    <br>
-    <input type="text" placeholder="username" ng-model="username">
-    <br>
-    <input type="text" placeholder="password" ng-model="password">
-    <br>
-    <button ng-click="login()">Log in</button>
+   <div class="loginSquare">
+       <p class="loginDetails">Username:</p>
+       <div class="input-wrapper">
+    <input type="text" placeholder="username" ng-model="username" class="logininput" id="username">
+           <label for="username" class="fa fa-user input-icon"></label>
+   </div>
+      <p class="loginDetails">Password:</p>
+       <div class="input-wrapper">
+    <input type="text" placeholder="password" ng-model="password" class="logininput" id="password">
+           <label for="password" class="fa fa-key input-icon"></label>
+    </div>
+    <button ng-click="login()" class="buttonLogin">Log in</button>
+       <h5 class="errorMessage">{{error}}</h5>
+        <p>Dont have an account?</p> <a href="#!/signUp" class="sigup">Sign up here</a>
+        </div>
+    </div>
 </div>
