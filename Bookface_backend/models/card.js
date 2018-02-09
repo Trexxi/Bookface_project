@@ -39,12 +39,13 @@ module.exports.findAllCards =  function(req, res) {
         var cardMap = {};
 
         cards.forEach(function(card){
-            console.log(req.user.id);
-            if(req.user._id === card.user) {
+            if(req.user._id.toString() === card.user.toString()) {
+                console.log('am inside :)))))');
                 cardMap[card._id] = card;
             }
         });
 
+        console.log(cardMap);
         res.send(cardMap);
     });
 };

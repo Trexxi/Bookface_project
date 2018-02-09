@@ -52,7 +52,7 @@ passport.deserializeUser(function (id, done) {
  * if you want to checkAuth here you might have to make it a post request, and then return the data.
  * So that the front-end can get it and render it
  */
-router.get('/', checkAuth, function(req, res, next) {
+router.post('/', checkAuth, function(req, res, next) {
     Card.findAllCards(req, res);
 });
 

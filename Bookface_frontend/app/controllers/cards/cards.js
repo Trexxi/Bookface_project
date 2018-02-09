@@ -60,9 +60,12 @@ angular.module('myApp.cards', ['ngRoute', 'oitozero.ngSweetAlert'])
             var data = {
                 token:sessionStorage.token
             };
-            $http.post('http://localhost:3000/users', serializeData(data), {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
+            $http.post('http://localhost:3000/users/', serializeData(data), {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
                 .success(function (data, status, headers, config) {
                     $scope.users = data;
+                    console.log(data);
+                    console.log(status);
+                    console.log(headers);
                     //only need success message on this one
                 })
                 .error(function (data, status, header, config) {
