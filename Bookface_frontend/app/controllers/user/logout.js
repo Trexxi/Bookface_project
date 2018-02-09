@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.logout', ['ngRoute'])
+angular.module('myApp.logout', ['ngRoute', 'oitozero.ngSweetAlert'])
 
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/logout', {
@@ -9,7 +9,7 @@ angular.module('myApp.logout', ['ngRoute'])
         });
     }])
 
-    .controller('LogoutCtrl', ['$scope', '$http','$location','$rootScope','$cookies', function ($scope, $http, $location, $rootScope, $cookies) {
+    .controller('LogoutCtrl', ['$scope', '$http','$location','$rootScope','$cookies', 'SweetAlert', function ($scope, $http, $location, $rootScope, $cookies, SweetAlert) {
 
         function serializeData(data) {
             // If this is not an object, defer to native stringification.
@@ -46,6 +46,11 @@ angular.module('myApp.logout', ['ngRoute'])
             .success(function (data, status, headers, config) {
                 $cookies.remove('connect.sid');
                 delete sessionStorage.token;
+                SweetAlert.swal({
+                    title:"Bye!",
+                    text:"We hope to see you again",
+                    imageUrl:"./../../images/Sendhelp_green.png"
+                });
                 $location.path('/login');
             });
     }]);

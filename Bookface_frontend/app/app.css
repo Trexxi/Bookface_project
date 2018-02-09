@@ -87,10 +87,18 @@ h1 {
 }
 
 #submitButton {
-  background-color: cadetblue;
+  background: linear-gradient(-180deg, #56d0bb 0%, #099a71 90%);
   color: white;
-  border: none;
+  border: #099a71 solid 1px;
+  border-radius: 2px;
+  padding:2px;
+  padding-right:10px;
+  padding-left:10px;
+  margin-bottom: 2px;
+}
 
+#submitButton:hover{
+  background: linear-gradient(-180deg, #58baa5 0%, #098764 90%);
 }
 #deleteButton {
   width: 100px;
