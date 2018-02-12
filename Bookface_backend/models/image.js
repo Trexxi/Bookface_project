@@ -16,12 +16,11 @@ var ImageSchema = new mongoose.Schema({
 
 var Image = module.exports = mongoose.model('Image', ImageSchema);
 
-
 module.exports.saveImage = function(imageData) {
     imageData.save();
 };
 
-module.exports.getImage = function(req, res){
+module.exports.getImage = function(req, res) {
     Image.find({},function(err, images) {
         var imageMap = {};
         console.log(req.user);
