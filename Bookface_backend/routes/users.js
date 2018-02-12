@@ -3,10 +3,12 @@ var router = express.Router();
 var moment = require('moment');
 var Card = require('../models/card');
 var User = require('../models/user');
+var Image = require('../models/image');
 var checkAuth = require('../middleware/check-auth.js');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var session = require('express-session');
+var fs = require('fs');
 
 /**
  * Start of passport code
@@ -92,6 +94,31 @@ router.post('/login',
     function (req, res) {
     console.log("this is the shti", req.body);
         User.logUserIn(req, res);
+});
+
+router.post('/getImage', checkAuth, function(req, res, next){
+    Image.getImage(req, res);
+});
+
+router.post('/uploadImage', checkAuth, function(req, res, next) {
+    if(typeof req.body.imageBinary !== "undefined") {
+        var ImageData = new Image({
+            img:{
+                data: req.body.imageBinary,
+                contentType: 'image/png'
+            },
+            user:req.user._id
+        });
+        Image.saveImage(ImageData);
+        res.status(200).json({
+            message: "gj xD"
+        });
+    } else {
+        res.status(500).json({
+            message: "No image was sent"
+        });
+    }
+
 });
 
 router.post('/change-password', checkAuth, function(req, res, next) {
