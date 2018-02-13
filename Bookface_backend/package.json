@@ -17,6 +17,8 @@
     "express-messages": "*",
     "express-session": "*",
     "express-validator": "*",
+    "file-system": "^2.2.2",
+    "fs": "0.0.1-security",
     "jade": "^1.11.0",
     "jsonwebtoken": "^8.1.1",
     "moment": "^2.20.1",

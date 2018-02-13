@@ -47,7 +47,7 @@ angular.module('myApp.login', ['ngRoute'])
             var source = buffer.join("&").replace(/%20/g, "+");
             return (source);
         }
-        $scope.username = "hehe123";
+        $scope.username = "beckman97";
         $scope.password = "hehe123";
         $scope.login = function() {
 

@@ -19,6 +19,7 @@ var CardSchema = mongoose.Schema({
 var Card = module.exports = mongoose.model('Card', CardSchema);
 
 module.exports.createNewCard = function(newCard, res) {
+
     console.log(newCard);
 
     if(typeof newCard.message !== "undefined" && newCard.message !== ""&& typeof newCard.message !== "undefined") {
